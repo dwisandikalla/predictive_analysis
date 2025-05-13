@@ -1,14 +1,18 @@
-# Laporan Proyek Machine Learning - Nama Anda
+# Laporan Proyek Machine Learning - Dwi Sandi Kalla
 
 ## Domain Proyek
 
-Pada bagian ini, kamu perlu menuliskan latar belakang yang relevan dengan proyek yang diangkat.
+Diabetes melitus merupakan salah satu penyakit tidak menular yang menjadi masalah kesehatan global. Menurut laporan dari World Health Organization (WHO), pada tahun 2021 diperkirakan lebih dari 422 juta orang di seluruh dunia hidup dengan diabetes, dan angka ini terus meningkat setiap tahunnya [1](https://www.who.int/news-room/fact-sheets/detail/diabetes). Diabetes tipe 2, yang merupakan jenis diabetes paling umum, sering kali tidak terdiagnosis pada tahap awal karena gejalanya yang tidak spesifik. Padahal, diagnosis dini sangat penting agar pasien dapat segera mendapatkan penanganan medis dan melakukan perubahan gaya hidup yang diperlukan.
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Jelaskan mengapa dan bagaimana masalah tersebut harus diselesaikan
-- Menyertakan hasil riset terkait atau referensi. Referensi yang diberikan harus berasal dari sumber yang kredibel dan author yang jelas.
-- Format Referensi dapat mengacu pada penulisan sitasi [IEEE](https://journals.ieeeauthorcenter.ieee.org/wp-content/uploads/sites/7/IEEE_Reference_Guide.pdf), [APA](https://www.mendeley.com/guides/apa-citation-guide/) atau secara umum seperti [di sini](https://penerbitdeepublish.com/menulis-buku-membuat-sitasi-dengan-mudah/)
-- Sumber yang bisa digunakan [Scholar](https://scholar.google.com/)
+Deteksi dini terhadap risiko diabetes dapat menjadi langkah preventif untuk mengurangi komplikasi jangka panjang seperti penyakit jantung, kerusakan ginjal, kebutaan, hingga amputasi. Dalam hal ini, pendekatan berbasis data menjadi salah satu solusi yang dapat diandalkan. Perkembangan teknologi machine learning dan data science telah membuka peluang baru untuk menganalisis data kesehatan dalam skala besar dan menghasilkan model prediksi yang akurat.
+
+Proyek ini bertujuan untuk membangun model prediksi diabetes dengan memanfaatkan Diabetes Prediction Dataset, yang berisi berbagai indikator kesehatan seperti jumlah kehamilan, kadar glukosa, tekanan darah, indeks massa tubuh (Body Mass Index), serta faktor genetik melalui Diabetes Pedigree Function. Dataset ini disusun untuk mendukung pengembangan model prediktif yang mampu mengidentifikasi individu dengan risiko tinggi terkena diabetes secara lebih akurat dan efisien.
+
+Dengan menerapkan algoritma machine learning seperti K-Nearest Neighbors, Random Forest, Linear Regression, dan AdaBoost, proyek ini akan mengevaluasi performa masing-masing model berdasarkan metrik Mean Squared Error (MSE) dan melakukan optimasi melalui hyperparameter tuning. Proyek ini diharapkan tidak hanya menghasilkan model prediktif yang efektif, namun juga dapat memberikan wawasan bagi praktisi kesehatan dalam pengambilan keputusan yang berbasis data.
+
+Menurut studi oleh Pérez-Gandía et al. (2018), penerapan sistem berbasis AI dalam prediksi diabetes mampu meningkatkan akurasi diagnosis hingga 87% dibanding metode konvensional [2]. Hal ini menunjukkan potensi besar dari pendekatan teknologi dalam meningkatkan layanan kesehatan preventif.
+
+Dengan latar belakang tersebut, pengembangan model prediksi diabetes berbasis machine learning menjadi suatu kebutuhan penting dalam upaya deteksi dini dan pengendalian penyakit diabetes, khususnya dalam masyarakat yang belum memiliki akses terhadap pemeriksaan kesehatan rutin.
 
 ## Business Understanding
 
