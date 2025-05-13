@@ -2,56 +2,49 @@
 
 ## Domain Proyek
 
-Diabetes melitus merupakan salah satu penyakit tidak menular yang menjadi masalah kesehatan global. Menurut laporan dari World Health Organization (WHO), pada tahun 2021 diperkirakan lebih dari 422 juta orang di seluruh dunia hidup dengan diabetes, dan angka ini terus meningkat setiap tahunnya [1](https://www.who.int/news-room/fact-sheets/detail/diabetes). Diabetes tipe 2, yang merupakan jenis diabetes paling umum, sering kali tidak terdiagnosis pada tahap awal karena gejalanya yang tidak spesifik. Padahal, diagnosis dini sangat penting agar pasien dapat segera mendapatkan penanganan medis dan melakukan perubahan gaya hidup yang diperlukan.
+Diabetes melitus merupakan salah satu penyakit tidak menular yang menjadi masalah kesehatan global. Diabetes terjadi ketika pankreas tidak memproduksi insulin dalam jumlah cukup atau ketika tubuh tidak dapat menggunakan insulin yang diproduksi dengan baik. Menurut laporan dari World Health Organization (WHO), pada tahun 2021 diabetes merupakan penyebab langsung dari 1,6 juta kematian dan 47% dari semua kematian akibat diabetes dialami oleh orang sebelum berusia 70 tahun.[[1]](https://www.who.int/news-room/fact-sheets/detail/diabetes). Seiring waktu, diabetes dapat merusak sistem pembuluh darah di jantung, mata, ginjal, dan saraf. Diabetes dapat menyebabkan hilangnya penglihatan secara permanen karena rusaknya pembuluh darah di mata. Banyak penderita diabetes mengalami masalah pada kaki karena kerusakan saraf dan aliran darah yang cenderung buruk. Hal ini menyebabkan terjadinya borok kaki dan dapat berujung pada amputasi.
 
-Deteksi dini terhadap risiko diabetes dapat menjadi langkah preventif untuk mengurangi komplikasi jangka panjang seperti penyakit jantung, kerusakan ginjal, kebutaan, hingga amputasi. Dalam hal ini, pendekatan berbasis data menjadi salah satu solusi yang dapat diandalkan. Perkembangan teknologi machine learning dan data science telah membuka peluang baru untuk menganalisis data kesehatan dalam skala besar dan menghasilkan model prediksi yang akurat.
+Deteksi dini terhadap risiko diabetes dapat menjadi langkah yang sangat awal untuk mengurangi penyakit lain yang disebabkan oleh diabetes. Dalam hal ini, pendekatan berbasis data dan Artificial Intelligence (AI) menjadi salah satu solusi yang dapat diandalkan. Perkembangan teknologi machine learning dan data science telah membuka peluang baru untuk menganalisis data kesehatan dalam skala besar dan menghasilkan model prediksi yang akurat.
 
-Proyek ini bertujuan untuk membangun model prediksi diabetes dengan memanfaatkan Diabetes Prediction Dataset, yang berisi berbagai indikator kesehatan seperti jumlah kehamilan, kadar glukosa, tekanan darah, indeks massa tubuh (Body Mass Index), serta faktor genetik melalui Diabetes Pedigree Function. Dataset ini disusun untuk mendukung pengembangan model prediktif yang mampu mengidentifikasi individu dengan risiko tinggi terkena diabetes secara lebih akurat dan efisien.
+Proyek ini bertujuan untuk membangun model prediksi diabetes dengan memanfaatkan Diabetes Prediction Dataset yang saya peroleh dari kaggle dan berisi berbagai indikator kesehatan seperti jumlah kehamilan, kadar glukosa, tekanan darah, ketebalan kulit, kadar insulin, indeks massa tubuh (Body Mass Index), umur, serta faktor genetik melalui Diabetes Pedigree Function. Dataset ini disusun untuk mendukung pengembangan model prediktif yang mampu mengidentifikasi individu dengan risiko tinggi terkena diabetes secara lebih akurat dan efisien.
 
-Dengan menerapkan algoritma machine learning seperti K-Nearest Neighbors, Random Forest, Linear Regression, dan AdaBoost, proyek ini akan mengevaluasi performa masing-masing model berdasarkan metrik Mean Squared Error (MSE) dan melakukan optimasi melalui hyperparameter tuning. Proyek ini diharapkan tidak hanya menghasilkan model prediktif yang efektif, namun juga dapat memberikan wawasan bagi praktisi kesehatan dalam pengambilan keputusan yang berbasis data.
+Dengan menerapkan algoritma machine learning seperti K-Nearest Neighbors, Random Forest, Linear Regression, proyek ini akan mengevaluasi performa masing-masing model berdasarkan metrik Mean Squared Error (MSE). Proyek ini diharapkan tidak hanya menghasilkan model prediktif yang efektif, namun juga dapat memberikan wawasan bagi praktisi kesehatan dalam pengambilan keputusan yang berbasis data.
 
-Menurut studi oleh Pérez-Gandía et al. (2018), penerapan sistem berbasis AI dalam prediksi diabetes mampu meningkatkan akurasi diagnosis hingga 87% dibanding metode konvensional [2]. Hal ini menunjukkan potensi besar dari pendekatan teknologi dalam meningkatkan layanan kesehatan preventif.
-
-Dengan latar belakang tersebut, pengembangan model prediksi diabetes berbasis machine learning menjadi suatu kebutuhan penting dalam upaya deteksi dini dan pengendalian penyakit diabetes, khususnya dalam masyarakat yang belum memiliki akses terhadap pemeriksaan kesehatan rutin.
+Menurut studi oleh Pérez-Gandía et al. (2018), penerapan sistem berbasis AI dalam prediksi diabetes mampu meningkatkan akurasi diagnosis hingga 87% dibanding metode konvensional [[2]](https://www.jmir.org/2018/5/e10775/). Hal ini menunjukkan potensi besar dari pendekatan teknologi dalam meningkatkan layanan kesehatan preventif. Dengan latar belakang tersebut, pengembangan model prediksi diabetes berbasis machine learning menjadi suatu kebutuhan penting dalam upaya deteksi dini dan pengendalian penyakit diabetes, khususnya dalam masyarakat yang belum memiliki akses terhadap pemeriksaan kesehatan rutin.
 
 ## Business Understanding
 
-Pada bagian ini, kamu perlu menjelaskan proses klarifikasi masalah.
-
-Bagian laporan ini mencakup:
-
 ### Problem Statements
 
-Menjelaskan pernyataan masalah latar belakang:
-- Pernyataan Masalah 1
-- Pernyataan Masalah 2
-- Pernyataan Masalah n
+- Bagaimana proses pembersihan data seperti penanganan missing value, outlier, dan duplikat dapat meningkatkan kualitas dataset serta membantu menghasilkan model prediksi diabetes yang lebih akurat dan andal?
+- Bagaimana membangun model prediksi untuk mengidentifikasi risiko seseorang terkena diabetes berdasarkan data jumlah kehamilan, kadar glukosa, tekanan darah, ketebalan kulit, kadar insulin, indeks massa tubuh (Body Mass Index), umur, serta faktor genetik melalui Diabetes Pedigree Function?
+- Algoritma machine learning mana yang memberikan performa terbaik berdasarkan nilai MSE dalam memprediksi diabetes pada dataset yang digunakan?
 
 ### Goals
 
-Menjelaskan tujuan dari pernyataan masalah:
-- Jawaban pernyataan masalah 1
-- Jawaban pernyataan masalah 2
-- Jawaban pernyataan masalah n
+- Melakukan proses pembersihan data melalui identifikasi dan penanganan missing values, outlier, serta data duplikat guna meningkatkan kualitas data input, sehingga model machine learning dapat belajar dari informasi yang bersih dan representatif untuk memprediksi risiko diabetes.
+- Mengembangkan model prediktif berbasis data kesehatan untuk mengidentifikasi individu dengan risiko diabetes secara akurat.
+- Membandingkan performa beberapa algoritma machine learning seperti K-Nearest Neighbors, Random Forest, dan Linear Regression menggunakan metrik Mean Squared Error (MSE).
 
-Semua poin di atas harus diuraikan dengan jelas. Anda bebas menuliskan berapa pernyataan masalah dan juga goals yang diinginkan.
+### Solution Statement
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Menambahkan bagian “Solution Statement” yang menguraikan cara untuk meraih goals. Bagian ini dibuat dengan ketentuan sebagai berikut: 
-
-    ### Solution statements
-    - Mengajukan 2 atau lebih solution statement. Misalnya, menggunakan dua atau lebih algoritma untuk mencapai solusi yang diinginkan atau melakukan improvement pada baseline model dengan hyperparameter tuning.
-    - Solusi yang diberikan harus dapat terukur dengan metrik evaluasi.
+- Menerapkan beberapa algoritma machine learning seperti K-Nearest Neighbors (KNN), Random Forest, dan Linear Regression untuk membangun model prediksi diabetes, dengan melakukan pembandingan performa menggunakan metrik evaluasi Mean Squared Error (MSE) pada data latih dan uji
+- Melakukan pembersihan data secara menyeluruh sebelum pelatihan model, mencakup penanganan missing values, penghapusan duplikat, dan deteksi outlier menggunakan teknik seperti IQR (Interquartile Range).
 
 ## Data Understanding
-Paragraf awal bagian ini menjelaskan informasi mengenai data yang Anda gunakan dalam proyek. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data).
-
-Selanjutnya uraikanlah seluruh variabel atau fitur pada data. Sebagai contoh:  
+Dataset yang digunakan dalam proyek ini adalah [Healthcare Diabetes Dataset](https://www.kaggle.com/datasets/nanditapore/healthcare-diabetes) yang berasal dari kaggle yang dirancang untuk keperluan prediksi risiko diabetes berdasarkan beberapa faktor. Dataset ini terdiri dari 2768 baris dan 9 kolom, dimana setiap baris merepresentasikan satu individu. Data ini memiliki satu variabel target yang bersifat biner, yaitu "Outcome" yang menunjukkan seseorang mengidap diabetes (1) atau tidak (0).
 
 ### Variabel-variabel pada Restaurant UCI dataset adalah sebagai berikut:
-- accepts : merupakan jenis pembayaran yang diterima pada restoran tertentu.
-- cuisine : merupakan jenis masakan yang disajikan pada restoran.
-- dst
+- Id : 	Pengidentifikasi unik untuk setiap baris data atau individu. Kolom ini bersifat administratif dan tidak memiliki peran langsung dalam proses prediksi. Biasanya akan dihapus pada tahap preprocessing.
+- _Pregnancies_ (Kehamilan) : Menunjukkan jumlah kehamilan yang pernah dialami oleh pasien wanita.
+- _Glucose_ (Glukosa) : Menggambarkan kadar glukosa plasma dalam darah setelah 2 jam dalam uji toleransi glukosa oral.
+- _BloodPressure_ (Tekanan Darah) : Merujuk pada tekanan darah diastolik, yaitu tekanan saat jantung berada dalam keadaan rileks di antara dua detakan. Tekanan darah tinggi sering ditemukan bersamaan dengan diabetes dan termasuk dalam sindrom metabolik.
+- _SkinThickness_ (Ketebalan Kulit) : Mengukur ketebalan lipatan kulit triceps, yang dapat digunakan sebagai indikator lemak tubuh.
+- Insulin : Menunjukkan kadar insulin serum 2 jam setelah tes toleransi glukosa. Kadar insulin dapat membantu menilai resistensi insulin yang merupakan akar penyebab utama diabetes.
+- BMI : Singkatan dari _Body Mass Index_, yaitu rasio berat badan terhadap tinggi badan dalam meter kuadrat. BMI merupakan indikator yang umum digunakan untuk mengklasifikasikan individu sebagai kurus, normal, gemuk, atau obesitas — faktor penting dalam prediksi diabetes.
+- DiabetesPedigreeFunction : Skor yang mengindikasikan faktor keturunan/genetik risiko diabetes. Nilai ini dihitung berdasarkan riwayat diabetes dalam keluarga dan kompleksitas hubungan kekerabatan.
+- _Age_ (Usia) : Usia pasien dalam tahun.
+- _Outcome_ (Hasil) : **1** Individu tersebut menderita diabetes, **2** Individu tersebut tidak menderita diabetes.
 
 **Rubrik/Kriteria Tambahan (Opsional)**:
 - Melakukan beberapa tahapan yang diperlukan untuk memahami data, contohnya teknik visualisasi data atau exploratory data analysis.
