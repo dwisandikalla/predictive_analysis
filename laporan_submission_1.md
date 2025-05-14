@@ -32,7 +32,7 @@ Menurut studi oleh Pérez-Gandía et al. (2018), penerapan sistem berbasis AI da
 - Melakukan pembersihan data secara menyeluruh sebelum pelatihan model, mencakup penanganan missing values, penghapusan duplikat, dan deteksi outlier menggunakan teknik seperti IQR (Interquartile Range).
 
 ## Data Understanding
-Dataset yang digunakan dalam proyek ini adalah [_Healthcare Diabetes Dataset_](https://www.kaggle.com/datasets/nanditapore/healthcare-diabetes) yang berasal dari kaggle yang dirancang untuk keperluan prediksi risiko diabetes berdasarkan beberapa faktor. Dataset ini terdiri dari 2768 baris dan 9 kolom, dimana setiap baris merepresentasikan satu individu. Data ini memiliki satu variabel target yang bersifat biner, yaitu "Outcome" yang menunjukkan seseorang mengidap diabetes (1) atau tidak (0).
+Dataset yang digunakan dalam proyek ini adalah [_Healthcare Diabetes Dataset_](https://www.kaggle.com/datasets/nanditapore/healthcare-diabetes) yang berasal dari kaggle yang dirancang untuk keperluan prediksi risiko diabetes berdasarkan beberapa faktor. Dataset ini terdiri dari 2768 baris dan 10 kolom, dimana setiap baris merepresentasikan satu individu. Data ini memiliki satu variabel target yang bersifat biner, yaitu "Outcome" yang menunjukkan seseorang mengidap diabetes (1) atau tidak (0).
 
 ### Variabel-variabel pada _Healthcare Diabetes Dataset_ adalah sebagai berikut:
 - Id : 	Pengidentifikasi unik untuk setiap baris data atau individu. Kolom ini bersifat administratif dan tidak memiliki peran langsung dalam proses prediksi. Biasanya akan dihapus pada tahap preprocessing.
@@ -69,17 +69,21 @@ Tahap Data Preparation merupakan langkah penting sebelum melakukan proses traini
 1. Mengecek Ringkasan Informasi Dataset
    - Mengecek informasi data menggunakan `data.info()`.
    - Tujuan dari pengecekan ini adalah untuk membantu memahami struktur data, Mengidentifikasi nilai yang hilang, memeriksa setiap type data dari setiap kolom, dan juga termasuk langkah awal untuk proses _data cleaning_.
+
 2. Mengecek Duplikasi Data
    - Mengecek duplikasi data dilakukan dengan kode `data.duplicated().sum()`.
    - Pada proyek ini tidak ditemukan adanya data yang duplikat.
    - Mengecek duplikasi data bertujuan agar data tidak ganda, data ganda dapat mendominasi hasil perhitungan statistik yang menghasilkan kesimpulan yang bias. Proses pengecekan duplikasi diperlukan untuk mendapatkan representasi data yang akurat, efisien, dan relevan untuk pengambilan keputusan yang tepat.
+
 3. Pemeriksaan dan Penanganan Nilai Kosong (Missing Values)
    - Mengecek missing value dapat menggunakan `data.isna().sum()`
    - Pada proyek ini tidak ditemukan adanya missing value.
    - Nilai kosong dapat mengganggu proses pelatihan model. Jika ada, harus dilakukan penanganan seperti imputasi (pengisian nilai) atau penghapusan baris/kolom.
+
 4. Penghapusan Kolom **Id**
    - Penghapusan kolom **Id** dilakukan melalui kode berikut `data.drop('Id', axis=1, inplace=True)`.
    - Kolom **Id** hanya berisi identitas pasien dan tidak memiliki kontribusi terhadap prediksi diabetes. Kolom seperti ini disebut irrelevant feature dan dapat menyebabkan noise dalam proses pelatihan model.
+
 5. Pengecekan Outlier dengan Box-plot
    - Pengecekan outlier menggunakan boxplot untuk setiap kolom dilakukan dengan menggunakan
      ```python
@@ -92,6 +96,7 @@ Tahap Data Preparation merupakan langkah penting sebelum melakukan proses traini
    - Hasilnya setiap kolom memiliki nilai outlier kecuali kolom Outcome.
    -  Beberapa kolom/fitur memiliki nilai outlier yang jika tidak ditangani, outlier bisa menyebabkan model belajar pola yang tidak benar (overfitting atau bias).
    -  > Gambar dapat dilihat di : [Google Collabs - project](https://colab.research.google.com/drive/1XQ_spIaupa-1KupVIS4ozF7IhCmrcStA?usp=sharing)
+
 6. Menangani Outlier (IQR)
    - Penanganan dilakukan dengan metode Interquartile Range (IQR) yang dilakukan memalui kode berikut:
      ```python
@@ -105,6 +110,7 @@ Tahap Data Preparation merupakan langkah penting sebelum melakukan proses traini
      ```
    - Setelah penghapusan outlier jumlah baris yang semula 2768 menjadi 2299 baris.
    - Alasan dilakukan penerapan metode IQR adalah karena ingin menghapus outlier agar nantinya tidak berpengaruh ke model.
+
 7. Distribusi Fitur (Histogram)
    - Disitribusi fitur dilakukan melalui pembuatan histogram dengan kode berikut :
      ```python
@@ -117,23 +123,94 @@ Tahap Data Preparation merupakan langkah penting sebelum melakukan proses traini
      * BloodPressure: Simetris, mendekati normal.
      * Outcome: Data biner dan tidak seimbang (lebih banyak kelas 0).
     - Alasan dilakukannya ini adalah untuk mencari temuan baru terkait data.
+
 8. Korelasi Antar Fitur
    - Menggunakan correlation matrix dan pairplot
+     ```python
+     # pairplot
+     sns.pairplot(data, diag_kind = 'kde')
+     # correlation matrix
+     plt.figure(figsize=(10, 8))
+     correlation_matrix = data.corr().round(2)
+     sns.heatmap(data=correlation_matrix, annot=True, cmap='coolwarm', linewidths=0.5, )
+     plt.title("Correlation Matrix", size=20)
+     ```
    - Hasil dari correlation matrix adalah
-     * Glucose punya korelasi paling tinggi dengan Outcome (0.50) → fitur penting untuk prediksi diabetes.
-     * Age dan Pregnancies berkorelasi tinggi (0.58) → makin tua, makin banyak kehamilan.
-     * SkinThickness dan Insulin berkorelasi cukup kuat (0.49) → sama-sama terkait metabolisme.
-     * Fitur BMI, Age, dan Pregnancies punya korelasi sedang ke Outcome (sekitar 0.2–0.3).
-     * Korelasi digunakan untuk melihat hubungan antar fitur dan memilih fitur yang relevan untuk model.
-    - Analisis korelasi digunakan untuk menentukan fitur yang relevan dalam pemodelan, di mana fitur dengan korelasi tinggi terhadap variabel target (seperti Outcome) layak dipertahankan karena berkontribusi signifikan. Selain itu, korelasi juga membantu menghindari multikolinearitas, yaitu kondisi ketika dua fitur memiliki hubungan yang sangat kuat (misalnya antara SkinThickness dan Insulin), yang dapat mengganggu stabilitas model. Meskipun begitu, fitur dengan korelasi rendah bukan berarti tidak penting, karena kombinasi antar fitur tetap dapat meningkatkan performa model secara keseluruhan.
+     * Pregnancies: Korelasi 0.23, arah korelasi positif (semakin banyak kehamilan, sedikit cenderung lebih tinggi risiko diabetes).
+     * Glucose: Korelasi 0.5, arah korelasi positif (semakin tinggi kadar glukosa, semakin tinggi risiko diabetes).
+     * BloodPressure: Korelasi 0.18, arah korelasi positif (semakin tinggi tekanan darah, sedikit cenderung lebih tinggi risiko diabetes).
+     * SkinThickness: Korelasi 0.04, arah korelasi positif (semakin tebal lipatan kulit, sangat sedikit cenderung lebih tinggi risiko diabetes).
+     * Insulin: Korelasi 0.11, arah korelasi positif (semakin tinggi kadar insulin, sedikit cenderung lebih tinggi risiko diabetes).
+     * BMI: Korelasi 0.25, arah korelasi positif (semakin tinggi BMI, sedikit cenderung lebih tinggi risiko diabetes).
+     * DiabetesPedigreeFunction: Korelasi 0.16, arah korelasi positif (semakin tinggi fungsi silsilah diabetes, sedikit cenderung lebih tinggi risiko diabetes).
+     * Age: Korelasi 0.29, arah korelasi positif (semakin bertambah usia, sedikit cenderung lebih tinggi risiko diabetes).
+   - Analisis korelasi digunakan untuk menentukan fitur yang relevan dalam pemodelan, di mana fitur dengan korelasi tinggi terhadap variabel target (seperti Outcome) layak dipertahankan karena berkontribusi signifikan. Selain itu, korelasi juga membantu menghindari multikolinearitas, yaitu kondisi ketika dua fitur memiliki hubungan yang sangat kuat (misalnya antara SkinThickness dan Insulin), yang dapat mengganggu stabilitas model. Meskipun begitu, fitur dengan korelasi rendah bukan berarti tidak penting, karena kombinasi antar fitur tetap dapat meningkatkan performa model secara keseluruhan.
+
+9. Splitting Data
+    - Kode yang diterapkan dalam splitting data adalah sebagai berikut:
+      ```python
+      X = data.drop(["Outcome"],axis =1)
+      y = data["Outcome"]
+      X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 42, stratify = y)
+      ```
+    - Data terbagi menjadi 20% untuk `X_test` dan `y_test` serta 80% untuk `X_train` dan `y_train`. Melakukan stratified splitting yaitu dengan `stratify=y`.
+    - Data train digunakan untuk melatih model, data test digunakan untuk menguji generalisasi model terhadap data baru.
+
+10. Standarisasi Data training dan testing
+    - Proses standarisasi mengubah data agar memiliki rata-rata 0 dan standar deviasi 1, sehingga setiap fitur berkontribusi secara seimbang. Penting untuk fit hanya pada data training, lalu transformasi yang sama digunakan pada data testing, agar tidak terjadi kebocoran informasi dari data testing ke model (data leakage) dan hasil evaluasi tetap valid.
+    - Standarisasi data diperlukan karena banyak algoritma machine learning, seperti K-Nearest Neighbors, Support Vector Machine, dan Logistic Regression, sensitif terhadap skala fitur. Jika fitur memiliki skala yang berbeda (misalnya, satu fitur dalam satuan puluhan dan fitur lain dalam ratusan), maka algoritma bisa lebih "memperhatikan" fitur dengan skala besar, sehingga menghasilkan model yang tidak akurat.
+    - Untuk melakukan standarisasi dugunakan kode sebagai berikut:
+      ```python
+      # Standarisasi untuk Training
+      scaler = StandardScaler()
+      scaler.fit(X_train)
+      X_train = scaler.transform(X_train)
+      X_train = pd.DataFrame(X_train, columns=X.columns)
+      X_train
+      # Stanndarisasi untuk testing
+      X_test = scaler.transform(X_test)
+      X_test = pd.DataFrame(X_test, columns=X.columns)
+      X_test
+      ```
 
 ## Modeling
-Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyelesaikan permasalahan. Anda perlu menjelaskan tahapan dan parameter yang digunakan pada proses pemodelan.
+Proyek ini menggunakan tiga model machine learning, yaitu K-Nearest Neighbors (KNN), Random Forest, Linear Regression. Ketiga model ini dilatih dengan menggunakan data yang telah melalui tahap preprocessing, serta dievaluasi menggunakan metrik Mean Squared Error (MSE). Berikut penjabaran ketiga metode tersebut:
+1. K-Nearest Neighbors (KNN)
+   - Parameter yang digunakan : `n_neighbors = 2`, ini berarti prediksi didasarkan pada rata-rata tetangga terdekat.
+   - Cara Kerja : KNN melakukan prediksi berdasarkan kedekatan data (jarak Euclidean) dengan tetangga terdekatnya di data pelatihan. KNN sangat tergantung pada kualitas dan distribusi data.
+   - Kelebihan : Non-parametrik, sederhana dan mudah dimplementasikan, dan bisa menangkap pola lokal dengan baik.
+   - Kekurangan : Sensitif terhadap pola skala data, Lambat untuk dataset besar karena perhitungan jarak terhadap semua titik data pelatihan, Rentan terhadap noise dan outlier.
+     ```python
+     knn = KNeighborsRegressor(n_neighbors=2)
+     knn.fit(X_train, y_train)
+     models.loc['train_mse','knn'] = mean_squared_error(y_pred = knn.predict(X_train), y_true=y_train)
+     ```
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan kelebihan dan kekurangan dari setiap algoritma yang digunakan.
-- Jika menggunakan satu algoritma pada solution statement, lakukan proses improvement terhadap model dengan hyperparameter tuning. **Jelaskan proses improvement yang dilakukan**.
-- Jika menggunakan dua atau lebih algoritma pada solution statement, maka pilih model terbaik sebagai solusi. **Jelaskan mengapa memilih model tersebut sebagai model terbaik**.
+2. Random Forest
+   - Parameter yang digunakan :
+     * n_estimators = 200: jumlah pohon dalam hutan.
+     * max_depth = 20: kedalaman maksimum pohon.
+     * min_samples_split = 2: jumlah minimum sampel untuk membagi node.
+     * random_state = 42: untuk menjaga hasil tetap konsisten.
+   - Cara Kerja : Random Forest membentuk banyak pohon keputusan (decision tree) dan menggabungkan hasilnya (rata-rata untuk regresi) agar lebih stabil dan akurat. Random Forest juga menggunakan subset fitur dan data (bagging) untuk membangun tiap pohon.
+   - Kelebihan : Mampu menangkap hubungan non-linier, tidak sensitif terhadap outlier dan multikolinearitas, bias rendah dan akurasi tinggi.
+   - Kekurangan : Waktu komputasi bisa tinggi, apalagi jika pohon sangat dalam, lebih sulit diinterpretasi dibanding regresi linear.
+     ```python
+     rf = RandomForestRegressor(n_estimators=200, max_depth=20, random_state=42, min_samples_split=2)
+     rf.fit(X_train, y_train)
+     models.loc['train_mse','RandomForest'] = mean_squared_error(y_pred=rf.predict(X_train), y_true=y_train)
+     ```
+
+3. Linear Regression
+   - Parameter yang digunakan : `sklearn.linear_model.LinearRegression()`.
+   - Cara Kerja : Linear regression mencari garis lurus terbaik yang meminimalkan jumlah kuadrat kesalahan antara prediksi dan nilai sebenarnya. Model ini mengasumsikan hubungan linier antara fitur dan target.
+   - Kelebihan : Mudah diinterpretasikan, membutuhkan waktu komputasi yang cepat.
+   - Kekurangan : Tidak mampu menangkap hubungan non-linear, sensitif terhadap multikolinearitas, Asumsi normalitas dan homoskedastisitas sering tidak terpenuhi dalam data nyata.
+     ```python
+     lr = LinearRegression()
+     lr.fit(X_train, y_train)
+     models.loc['train_mse','LinearRegression'] = mean_squared_error(y_pred=lr.predict(X_train), y_true=y_train)
+     ```
 
 ## Evaluation
 Pada bagian ini anda perlu menyebutkan metrik evaluasi yang digunakan. Lalu anda perlu menjelaskan hasil proyek berdasarkan metrik evaluasi yang digunakan.
