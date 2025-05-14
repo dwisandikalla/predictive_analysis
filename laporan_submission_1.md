@@ -188,10 +188,10 @@ Proyek ini menggunakan tiga model machine learning, yaitu K-Nearest Neighbors (K
 
 2. Random Forest
    - Parameter yang digunakan :
-     * n_estimators = 200: jumlah pohon dalam hutan.
-     * max_depth = 20: kedalaman maksimum pohon.
-     * min_samples_split = 2: jumlah minimum sampel untuk membagi node.
-     * random_state = 42: untuk menjaga hasil tetap konsisten.
+     * `n_estimators = 200` : jumlah pohon dalam hutan.
+     * `max_depth = 20` : kedalaman maksimum pohon.
+     * `min_samples_split = 2` : jumlah minimum sampel untuk membagi node.
+     * `random_state = 42` : untuk menjaga hasil tetap konsisten.
    - Cara Kerja : Random Forest membentuk banyak pohon keputusan (decision tree) dan menggabungkan hasilnya (rata-rata untuk regresi) agar lebih stabil dan akurat. Random Forest juga menggunakan subset fitur dan data (bagging) untuk membangun tiap pohon.
    - Kelebihan : Mampu menangkap hubungan non-linier, tidak sensitif terhadap outlier dan multikolinearitas, bias rendah dan akurasi tinggi.
    - Kekurangan : Waktu komputasi bisa tinggi, apalagi jika pohon sangat dalam, lebih sulit diinterpretasi dibanding regresi linear.
@@ -211,6 +211,8 @@ Proyek ini menggunakan tiga model machine learning, yaitu K-Nearest Neighbors (K
      lr.fit(X_train, y_train)
      models.loc['train_mse','LinearRegression'] = mean_squared_error(y_pred=lr.predict(X_train), y_true=y_train)
      ```
+<p>Dari model diatas diperoleh MSE sebagai berikut : 
+Model terbaik yang dipilih adalah Random Forest, karena menghasilkan nilai Mean Squared Error (MSE) terkecil pada data uji, yaitu sebesar 0.000007, dibandingkan dengan model KNN dan Linear Regression. Selain itu, model ini juga menunjukkan performa yang konsisten antara data latih dan data uji, menandakan kemampuan generalisasi yang baik tanpa overfitting. Random Forest juga unggul dalam menangkap hubungan non-linier antar fitur, sehingga lebih efektif dalam menyelesaikan permasalahan regresi pada dataset ini.Hasil algoritma yang terbaik berdasarkan metrik yang diperoleh.
 
 ## Evaluation
 Pada bagian ini anda perlu menyebutkan metrik evaluasi yang digunakan. Lalu anda perlu menjelaskan hasil proyek berdasarkan metrik evaluasi yang digunakan.
