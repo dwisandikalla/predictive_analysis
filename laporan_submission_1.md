@@ -10,7 +10,7 @@ Proyek ini bertujuan untuk membangun model prediksi diabetes dengan memanfaatkan
 
 Dengan menerapkan algoritma machine learning seperti K-Nearest Neighbors, Random Forest, Linear Regression, proyek ini akan mengevaluasi performa masing-masing model berdasarkan metrik _Mean Squared Error_ (MSE). Proyek ini diharapkan tidak hanya menghasilkan model prediktif yang efektif, namun juga dapat memberikan wawasan bagi praktisi kesehatan dalam pengambilan keputusan yang berbasis data.
 
-Menurut studi oleh Pérez-Gandía et al. (2018), penerapan sistem berbasis AI dalam prediksi diabetes mampu meningkatkan akurasi diagnosis hingga 87% dibanding metode konvensional [[2]](https://www.jmir.org/2018/5/e10775/). Hal ini menunjukkan potensi besar dari pendekatan teknologi dalam meningkatkan layanan kesehatan preventif. Dengan latar belakang tersebut, pengembangan model prediksi diabetes berbasis machine learning menjadi suatu kebutuhan penting dalam upaya deteksi dini dan pengendalian penyakit diabetes, khususnya dalam masyarakat yang belum memiliki akses terhadap pemeriksaan kesehatan rutin.
+Penerapan sistem berbasis AI dalam prediksi diabetes mampu meningkatkan akurasi diagnosis hingga 87% dibanding metode konvensional [[2]](https://www.jmir.org/2018/5/e10775/). Hal ini menunjukkan potensi besar dari pendekatan teknologi dalam meningkatkan layanan kesehatan preventif. Dengan latar belakang tersebut, pengembangan model prediksi diabetes berbasis machine learning menjadi suatu kebutuhan penting dalam upaya deteksi dini dan pengendalian penyakit diabetes, khususnya dalam masyarakat yang belum memiliki akses terhadap pemeriksaan kesehatan rutin.
 
 ## Business Understanding
 
@@ -211,24 +211,38 @@ Proyek ini menggunakan tiga model machine learning, yaitu K-Nearest Neighbors (K
      lr.fit(X_train, y_train)
      models.loc['train_mse','LinearRegression'] = mean_squared_error(y_pred=lr.predict(X_train), y_true=y_train)
      ```
-<p>Dari model diatas diperoleh MSE sebagai berikut : 
 Model terbaik yang dipilih adalah Random Forest, karena menghasilkan nilai Mean Squared Error (MSE) terkecil pada data uji, yaitu sebesar 0.000007, dibandingkan dengan model KNN dan Linear Regression. Selain itu, model ini juga menunjukkan performa yang konsisten antara data latih dan data uji, menandakan kemampuan generalisasi yang baik tanpa overfitting. Random Forest juga unggul dalam menangkap hubungan non-linier antar fitur, sehingga lebih efektif dalam menyelesaikan permasalahan regresi pada dataset ini.Hasil algoritma yang terbaik berdasarkan metrik yang diperoleh.
 
 ## Evaluation
-Pada bagian ini anda perlu menyebutkan metrik evaluasi yang digunakan. Lalu anda perlu menjelaskan hasil proyek berdasarkan metrik evaluasi yang digunakan.
+Pada proyek ini digunakan metrik Mean Squared Error (MSE). MSE adalah salah satu metrik evaluasi yang paling umum digunakan dalam masalah regresi. Metrik ini bekerja dengan mengukur rata-rata selisih antara nilai aktual dan nilai prediksi dari suatu model. Dengan kata lain, MSE memberitahu bahwa seberapa jauh model dari kenyataan sebenarnya dalam satuan kuadrat. MSE digunakan karena sensitif terhadap error besar, mudah dihitung dan dibedakan antar model, dan konsisten secara matematis. Rumus yang digunakan dalam MSE adalah
 
-Sebagai contoh, Anda memiih kasus klasifikasi dan menggunakan metrik **akurasi, precision, recall, dan F1 score**. Jelaskan mengenai beberapa hal berikut:
-- Penjelasan mengenai metrik yang digunakan
-- Menjelaskan hasil proyek berdasarkan metrik evaluasi
+$$
+\text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+$$
 
-Ingatlah, metrik evaluasi yang digunakan harus sesuai dengan konteks data, problem statement, dan solusi yang diinginkan.
+dengan : <br>
+${n}$ : jumlah data<br>
+$y_i$ : nilai aktual<br>
+$\hat{y}_i$ : nilai prediksi<br>
+$(y_i - \hat{y}_i)^2$ : selisih kuadrat antara nilai aktual dan prediksi<br>
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan formula metrik dan bagaimana metrik tersebut bekerja.
+Dari ketiga model, didapatkan nilai MSE adalah sebagai berikut: 
 
-**---Ini adalah bagian akhir laporan---**
+| Model | train | test |
+| --- | --- | --- |
+| KNN | 0.000002 | 0.000009 |
+| Random Forest | 0.000002 | 0.000007 |
+| Linear Regression | 0.000144 | 0.000147 |
 
-_Catatan:_
-- _Anda dapat menambahkan gambar, kode, atau tabel ke dalam laporan jika diperlukan. Temukan caranya pada contoh dokumen markdown di situs editor [Dillinger](https://dillinger.io/), [Github Guides: Mastering markdown](https://guides.github.com/features/mastering-markdown/), atau sumber lain di internet. Semangat!_
-- Jika terdapat penjelasan yang harus menyertakan code snippet, tuliskan dengan sewajarnya. Tidak perlu menuliskan keseluruhan kode project, cukup bagian yang ingin dijelaskan saja.
+Berdasarkan hasil evaluasi menggunakan metrik Mean Squared Error (MSE) pada data train dan test, diperoleh bahwa model Random Forest memiliki performa terbaik dibandingkan model lainnya. Hal ini ditunjukkan oleh nilai MSE yang paling kecil, yaitu 0.000002 pada data train dan 0.000007 pada data test. Artinya, model Random Forest mampu memprediksi target dengan kesalahan yang sangat kecil.
+
+Model KNN juga menunjukkan performa yang baik dengan MSE train 0.000002 dan test 0.000009, meskipun sedikit lebih besar dibandingkan Random Forest.
+
+Sementara itu, model Linear Regression menunjukkan performa yang paling rendah di antara ketiganya, dengan MSE train 0.000144 dan test 0.000147. Ini menunjukkan bahwa model tersebut tidak mampu menangkap kompleksitas data sebaik dua model lainnya.
+
+
+## Daftar Referensi
+> [1]World Health Organization. (2024, November 14). Diabetes. WHO. https://www.who.int/news-room/fact-sheets/detail/diabetes
+>
+> [2]Contreras, I., & Vehi, J. (2018). Artificial intelligence for diabetes management and decision support: literature review. Journal of medical Internet research, 20(5), e10775.https://www.jmir.org/2018/5/e10775/
 
