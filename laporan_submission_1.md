@@ -242,7 +242,7 @@ Sementara itu, model Linear Regression menunjukkan performa yang paling rendah d
 
 
 ## Daftar Referensi
-> [1]World Health Organization. (2024, November 14). Diabetes. WHO. https://www.who.int/news-room/fact-sheets/detail/diabetes
+> [1]World Health Organization, Diabetes, Nov. 14, 2024. [Online]. Available: https://www.who.int/news-room/fact-sheets/detail/diabetes
 >
-> [2]Contreras, I., & Vehi, J. (2018). Artificial intelligence for diabetes management and decision support: literature review. Journal of medical Internet research, 20(5), e10775.https://www.jmir.org/2018/5/e10775/
+> [2] I. Contreras and J. Vehi, "Artificial intelligence for diabetes management and decision support: literature review," Journal of Medical Internet Research, vol. 20, no. 5, p. e10775, 2018.doi: e10775.https://www.jmir.org/2018/5/e10775/
 
