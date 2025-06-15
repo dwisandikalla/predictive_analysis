@@ -2,55 +2,57 @@
 
 ## Domain Proyek
 
-Pada bagian ini, kamu perlu menuliskan latar belakang yang relevan dengan proyek yang diangkat.
+Penyakit diabetes merupakan salah satu masalah kesehatan global yang semakin meningkat prevalensinya setiap tahun. Menurut laporan dari World Health Organization (WHO), lebih dari 422 juta orang di seluruh dunia menderita diabetes, dan angka ini diperkirakan akan terus meningkat secara signifikan dalam beberapa dekade ke depan [1](https://www.who.int/news-room/fact-sheets/detail/diabetes). Diabetes, khususnya tipe 2, dapat menyebabkan komplikasi serius seperti penyakit jantung, gagal ginjal, kebutaan, hingga kematian dini jika tidak terdeteksi dan ditangani sejak dini.
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Jelaskan mengapa dan bagaimana masalah tersebut harus diselesaikan
-- Menyertakan hasil riset terkait atau referensi. Referensi yang diberikan harus berasal dari sumber yang kredibel dan author yang jelas.
-- Format Referensi dapat mengacu pada penulisan sitasi [IEEE](https://journals.ieeeauthorcenter.ieee.org/wp-content/uploads/sites/7/IEEE_Reference_Guide.pdf), [APA](https://www.mendeley.com/guides/apa-citation-guide/) atau secara umum seperti [di sini](https://penerbitdeepublish.com/menulis-buku-membuat-sitasi-dengan-mudah/)
-- Sumber yang bisa digunakan [Scholar](https://scholar.google.com/)
+Di Indonesia sendiri, berdasarkan data dari Riskesdas (Riset Kesehatan Dasar) 2018, prevalensi diabetes melitus yang terdiagnosis oleh tenaga kesehatan maupun tidak terdiagnosis terus meningkat, yakni dari 6,9% pada tahun 2013 menjadi 10,9% pada tahun 2018 [2](https://www.litbang.kemkes.go.id/laporan-riset-kesehatan-dasar-riskesdas/). Hal ini menandakan bahwa banyak kasus diabetes tidak terdeteksi sejak awal, yang pada akhirnya menimbulkan beban ekonomi dan kesehatan yang lebih besar.
+
+Dalam konteks ini, penerapan analisis prediktif berbasis data menjadi semakin penting. Dengan memanfaatkan teknologi machine learning dan data kesehatan seperti tekanan darah, kadar glukosa, insulin, hingga indeks massa tubuh (BMI), kita dapat membangun sistem prediksi yang mampu mengidentifikasi potensi risiko diabetes pada seseorang dengan akurasi yang tinggi.
+
+Proyek ini menggunakan dataset Healthcare-Diabetes.csv yang berisi 2.768 observasi dan 10 variabel, termasuk variabel target Outcome yang merepresentasikan diagnosis diabetes (1 = diabetes, 0 = tidak diabetes). Model prediktif dikembangkan menggunakan tiga algoritma machine learning, yaitu Linear Regression, Random Forest, dan K-Nearest Neighbors (KNN). Evaluasi dilakukan menggunakan metrik Mean Squared Error (MSE) untuk menilai kinerja masing-masing model dalam memprediksi risiko diabetes.
+
+Melalui pendekatan ini, diharapkan tercipta sistem deteksi dini diabetes yang akurat dan efisien, yang dapat membantu lembaga kesehatan, klinik, maupun individu dalam mengambil keputusan preventif sebelum kondisi diabetes berkembang menjadi kronis.
 
 ## Business Understanding
 
-Pada bagian ini, kamu perlu menjelaskan proses klarifikasi masalah.
-
-Bagian laporan ini mencakup:
+Penerapan machine learning dalam bidang kesehatan membuka peluang besar dalam upaya preventif terhadap penyakit kronis seperti diabetes. Dalam konteks ini, pemahaman yang kuat terhadap tujuan bisnis dan formulasi masalah sangat penting untuk mengarahkan proses analisis data dan pembangunan model prediktif yang akurat.
 
 ### Problem Statements
 
-Menjelaskan pernyataan masalah latar belakang:
-- Pernyataan Masalah 1
-- Pernyataan Masalah 2
-- Pernyataan Masalah n
+- Bagaimana mengidentifikasi pasien yang berisiko tinggi terkena diabetes berdasarkan data kesehatan dasar seperti kadar glukosa, tekanan darah, BMI, dan usia?
+- Model machine learning apa yang paling optimal dalam memprediksi risiko diabetes berdasarkan performa metrik Mean Squared Error (MSE)?
+- Apakah preprocessing data seperti standarisasi dan penanganan outlier dapat meningkatkan performa model prediktif secara signifikan?
 
 ### Goals
 
-Menjelaskan tujuan dari pernyataan masalah:
-- Jawaban pernyataan masalah 1
-- Jawaban pernyataan masalah 2
-- Jawaban pernyataan masalah n
+- Mengembangkan sistem prediktif yang mampu mengidentifikasi pasien berisiko diabetes hanya dengan data medis dasar.
+- Mengevaluasi dan membandingkan performa beberapa model prediktif, yaitu Linear Regression, Random Forest, dan K-Nearest Neighbors, berdasarkan metrik MSE.
+- Menilai dampak preprocessing data terhadap performa model. 
 
-Semua poin di atas harus diuraikan dengan jelas. Anda bebas menuliskan berapa pernyataan masalah dan juga goals yang diinginkan.
+### Solution statements
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Menambahkan bagian “Solution Statement” yang menguraikan cara untuk meraih goals. Bagian ini dibuat dengan ketentuan sebagai berikut: 
-
-    ### Solution statements
-    - Mengajukan 2 atau lebih solution statement. Misalnya, menggunakan dua atau lebih algoritma untuk mencapai solusi yang diinginkan atau melakukan improvement pada baseline model dengan hyperparameter tuning.
-    - Solusi yang diberikan harus dapat terukur dengan metrik evaluasi.
+- Menggunakan lebih dari satu algoritma machine learning (Linear Regression, Random Forest, KNN) untuk membangun model prediktif.
+- Melakukan preprocessing data melalui tahapan:
+  - Penghapusan outlier dengan metode Interquartile Range (IQR)
+  - Standarisasi fitur numerik menggunakan StandardScaler
+  - Penghapusan kolom yang tidak relevan (misal kolom Id)
 
 ## Data Understanding
-Paragraf awal bagian ini menjelaskan informasi mengenai data yang Anda gunakan dalam proyek. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data).
+Dataset yang digunakan dalam proyek ini merupakan dataset Healthcare-Diabetes yang bersumber dari platform Kaggle. Dataset ini berisi data medis dasar yang sering dijadikan indikator risiko diabetes pada pasien. Dataset dapat diunduh melalui tautan berikut: [Diabetes Dataset]([https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data](https://www.kaggle.com/datasets/nanditapore/healthcare-diabetes)). Dataset ini terdiri dari 2.768 baris dan 10 kolom, dengan 9 kolom sebagai fitur dan 1 kolom target (label). Data ini digunakan untuk memprediksi kemungkinan seseorang menderita diabetes berdasarkan beberapa fitur kesehatan.
 
-Selanjutnya uraikanlah seluruh variabel atau fitur pada data. Sebagai contoh:  
+### Variabel-variabel pada Diabetes dataset adalah sebagai berikut:
+- Id: Nomor unik identifikasi pasien. Kolom ini dihapus karena tidak memiliki nilai prediktif.
+- Pregnancies: Jumlah kehamilan yang pernah dialami oleh pasien.
+- Glucose: Kadar glukosa dalam darah.
+- BloodPressure: Tekanan darah diastolik (mm Hg).
+- SkinThickness: Ketebalan lipatan kulit trisep (mm).
+- Insulin: Kadar insulin dalam darah (mu U/ml).
+- BMI: Indeks Massa Tubuh, dihitung sebagai berat (kg) dibagi kuadrat tinggi badan (m²).
+- DiabetesPedigreeFunction: Skor riwayat keluarga penderita diabetes (faktor genetik).
+- Age: Usia pasien (dalam tahun).
+- Outcome: Variabel target, bernilai 1 jika pasien menderita diabetes dan 0 jika tidak.
 
-### Variabel-variabel pada Restaurant UCI dataset adalah sebagai berikut:
-- accepts : merupakan jenis pembayaran yang diterima pada restoran tertentu.
-- cuisine : merupakan jenis masakan yang disajikan pada restoran.
-- dst
+### Exploratory Data Analysis (EDA)
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Melakukan beberapa tahapan yang diperlukan untuk memahami data, contohnya teknik visualisasi data atau exploratory data analysis.
 
 ## Data Preparation
 Pada bagian ini Anda menerapkan dan menyebutkan teknik data preparation yang dilakukan. Teknik yang digunakan pada notebook dan laporan harus berurutan.
