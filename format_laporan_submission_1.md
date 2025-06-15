@@ -67,17 +67,80 @@ Dataset yang digunakan dalam proyek ini merupakan dataset Healthcare-Diabetes ya
 ## Data Preparation
 Tahapan ini menjelaskan proses pra-pemrosesan data yang dilakukan sebelum membangun model prediktif. Tujuan dari data preparation adalah memastikan bahwa data bersih, relevan, dan berada dalam bentuk yang sesuai untuk digunakan dalam algoritma machine learning.
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan proses data preparation yang dilakukan
-- Menjelaskan alasan mengapa diperlukan tahapan data preparation tersebut.
+1. Menghapus Kolom Tidak Relevan (```Id```)
+
+   Kolom Id hanya berfungsi sebagai penanda identitas unik pasien dan tidak memiliki pengaruh terhadap prediksi. Oleh karena itu, kolom ini dihapus menggunakan:
+   ```python
+   df.drop('Id', axis=1, inplace=True)
+   ```
+   
+2. Menghapus Duplikasi dan Mengecek Missing Value
+
+   Mengecek data duplikat:
+   ```python
+   df.duplicated().sum()
+   ```
+   Mengecek Missing value:
+   ```python
+   df.isna().sum()
+   ```
+   
+3. Deteksi dan Penanganan Outlier
+
+   Outlier dapat menyebabkan model menjadi bias atau overfitting. Deteksi menggunakan boxplot untuk setiap fitur. Penanganan dilakukan dengan metode Interquartile Range (IQR):
+   ```python
+   Q1 = df.quantile(0.25)
+   Q3 = df.quantile(0.75)
+   IQR = Q3 - Q1
+   # Menghapus baris yang mengandung outlier
+   df = df[~((df < (Q1 - 1.5 * IQR)) | (df > (Q3 + 1.5 * IQR))).any(axis=1)]
+   df.info()
+   ```
+   
+4. Pembagian Data Training dan Testing
+
+   Data dibagi menggunakan stratified split dengan rasio 70:30 untuk menjaga distribusi kelas pada label Outcome.
+   ```python
+   X = df.drop(["Outcome"],axis=1)
+   y = df["Outcome"]
+   X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3, random_state = 42, stratify = y)
+   ```
+   
+5. Standardisasi Data
+
+   Dilakukan karena beberapa algoritma seperti KNN dan regresi linier sensitif terhadap skala.
+   ```python
+   scaler = StandardScaler()
+   scaler.fit(X_train)
+   X_train = scaler.transform(X_train)
+   X_train = pd.DataFrame(X_train, columns=X.columns)
+   X_train
+   X_test = scaler.transform(X_test)
+   ```
 
 ## Modeling
 Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyelesaikan permasalahan. Anda perlu menjelaskan tahapan dan parameter yang digunakan pada proses pemodelan.
+1. Linear Regression
+   - Parameter: default (tanpa penyesuaian).
+   - Deskripsi: model regresi sederhana yang mengasumsikan hubungan linier antara fitur dan target.
+   - Kelebihan: Cepat dalam pelatihan, Mudah dipahami dan diinterpretasi.
+   - Kekurangan: Tidak cocok untuk hubungan non-linear, Rentan terhadap multikolinearitas dan outlier.
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan kelebihan dan kekurangan dari setiap algoritma yang digunakan.
-- Jika menggunakan satu algoritma pada solution statement, lakukan proses improvement terhadap model dengan hyperparameter tuning. **Jelaskan proses improvement yang dilakukan**.
-- Jika menggunakan dua atau lebih algoritma pada solution statement, maka pilih model terbaik sebagai solusi. **Jelaskan mengapa memilih model tersebut sebagai model terbaik**.
+2. Random Forest Regressor
+   - Parameter:
+     - n_estimators = 200: jumlah pohon dalam hutan.
+     - max_depth = 20: kedalaman maksimum pohon.
+     - random_state = 42: untuk reprodusibilitas hasil.
+   - Deskripsi: model ensembel berbasis pohon keputusan yang menggabungkan banyak pohon untuk meningkatkan akurasi.
+   - Kelebihan: Mampu menangani hubungan non-linear dan interaksi anatara fitur, tahan terhadap overfitting, tidak memerlukan scaling fitur.
+
+3. K-Nearest Neighbors (KNN) Regressor
+   - Parameter: n_neighbors = 2
+   - Deskripsi: model prediksi berdasarkan kemiripan dengan titik data tetangga terdekat.
+   - Kelebihan: Sederhana dan efektif untuk dataset kecil, tidak membutuhkan asumsi distribusi data.
+   - Kekurangan: Sensitif terhadap skala dan outlier (karena berbasis jarak), tidak efisien untuk dataset besar, sangat tergantung pada pemilihan parameter k.
+
+Hasil
 
 ## Evaluation
 Pada bagian ini anda perlu menyebutkan metrik evaluasi yang digunakan. Lalu anda perlu menjelaskan hasil proyek berdasarkan metrik evaluasi yang digunakan.
