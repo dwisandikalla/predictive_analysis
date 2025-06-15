@@ -52,10 +52,20 @@ Dataset yang digunakan dalam proyek ini merupakan dataset Healthcare-Diabetes ya
 - Outcome: Variabel target, bernilai 1 jika pasien menderita diabetes dan 0 jika tidak.
 
 ### Exploratory Data Analysis (EDA)
+1. Informasi Struktur Data
+   Dataset tidak mengandung missing value, sehingga tidak perlu imputasi data.
 
+2. Distribusi dan Outlier
+   Visualisasi distribusi menggunakan boxplot menunjukkan adanya outlier pada beberapa fitur.
+
+3. Distribusi Histogram
+   Histogram seluruh fitur ditampilkan untuk melihat penyebaran data secara visual.
+
+4. Korelasi Antar Fitur
+   Korelasi dihitung dan divisualisasikan dalam bentuk heatmap.
 
 ## Data Preparation
-Pada bagian ini Anda menerapkan dan menyebutkan teknik data preparation yang dilakukan. Teknik yang digunakan pada notebook dan laporan harus berurutan.
+Tahapan ini menjelaskan proses pra-pemrosesan data yang dilakukan sebelum membangun model prediktif. Tujuan dari data preparation adalah memastikan bahwa data bersih, relevan, dan berada dalam bentuk yang sesuai untuk digunakan dalam algoritma machine learning.
 
 **Rubrik/Kriteria Tambahan (Opsional)**: 
 - Menjelaskan proses data preparation yang dilakukan
