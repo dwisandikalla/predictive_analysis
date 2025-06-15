@@ -140,23 +140,28 @@ Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyel
    - Kelebihan: Sederhana dan efektif untuk dataset kecil, tidak membutuhkan asumsi distribusi data.
    - Kekurangan: Sensitif terhadap skala dan outlier (karena berbasis jarak), tidak efisien untuk dataset besar, sangat tergantung pada pemilihan parameter k.
 
-Hasil
+Model terbaik yang dipilih adalah Random Forest, karena menghasilkan nilai Mean Squared Error (MSE) terkecil pada data uji, yaitu sebesar 0.000009, dibandingkan dengan model KNN dan Linear Regression. Selain itu, model ini juga menunjukkan performa yang konsisten antara data latih dan data uji, menandakan kemampuan generalisasi yang baik tanpa overfitting.
+
+Random Forest juga unggul dalam menangkap hubungan non-linier antar fitur, sehingga lebih efektif dalam menyelesaikan permasalahan regresi pada dataset ini. Oleh karena itu, Random Forest ditetapkan sebagai model terbaik berdasarkan metrik evaluasi yang diperoleh.
 
 ## Evaluation
-Pada bagian ini anda perlu menyebutkan metrik evaluasi yang digunakan. Lalu anda perlu menjelaskan hasil proyek berdasarkan metrik evaluasi yang digunakan.
 
-Sebagai contoh, Anda memiih kasus klasifikasi dan menggunakan metrik **akurasi, precision, recall, dan F1 score**. Jelaskan mengenai beberapa hal berikut:
-- Penjelasan mengenai metrik yang digunakan
-- Menjelaskan hasil proyek berdasarkan metrik evaluasi
+### Metrik Evaluasi yang Digunakan: Mean Squared Error (MSE)\
+Dalam proyek ini, metrik evaluasi yang digunakan adalah Mean Squared Error (MSE) karena permasalahan yang diangkat merupakan regresi, yaitu memprediksi nilai kontinu (dalam hal ini nilai "Outcome" diabetes dalam skala tertentu). MSE sangat umum digunakan dalam regresi karena memberikan penalti besar terhadap kesalahan prediksi yang signifikan.
 
-Ingatlah, metrik evaluasi yang digunakan harus sesuai dengan konteks data, problem statement, dan solusi yang diinginkan.
+Rumus MSE adalah sebagai berikut:
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan formula metrik dan bagaimana metrik tersebut bekerja.
 
-**---Ini adalah bagian akhir laporan---**
+MSE mengukur rata-rata kuadrat selisih antara nilai aktual dan prediksi. Semakin kecil nilai MSE, maka semakin akurat model dalam memprediksi data.
 
-_Catatan:_
-- _Anda dapat menambahkan gambar, kode, atau tabel ke dalam laporan jika diperlukan. Temukan caranya pada contoh dokumen markdown di situs editor [Dillinger](https://dillinger.io/), [Github Guides: Mastering markdown](https://guides.github.com/features/mastering-markdown/), atau sumber lain di internet. Semangat!_
-- Jika terdapat penjelasan yang harus menyertakan code snippet, tuliskan dengan sewajarnya. Tidak perlu menuliskan keseluruhan kode project, cukup bagian yang ingin dijelaskan saja.
+### Hasil Evaluasi
+| model | train	| test | 
+|---|---|--- |
+| Linear Regression |	0.000145 |	0.000144 |
+| Random Forest |	0.000002	| 0.000009 |
+| KNN |	0.000004 |	0.000022 |
 
+### Interpretasi Hasil
+- Random Forest memberikan performa terbaik dengan nilai MSE terkecil, yaitu 0.000009 pada data testing. Ini menunjukkan bahwa model ini sangat akurat dalam memprediksi data baru dan memiliki kemampuan generalisasi yang baik.
+- KNN memiliki performa cukup baik, namun masih lebih tinggi MSE-nya dibandingkan Random Forest.
+- Linear Regression menunjukkan performa paling lemah di antara ketiganya, karena kemungkinan tidak mampu menangkap pola non-linear antar fitur.
