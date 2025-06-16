@@ -151,6 +151,15 @@ Dalam proyek ini, metrik evaluasi yang digunakan adalah Mean Squared Error (MSE)
 
 Rumus MSE adalah sebagai berikut:
 
+$$
+\text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+$$
+
+dengan : <br>
+${n}$ : jumlah data<br>
+$y_i$ : nilai aktual<br>
+$\hat{y}_i$ : nilai prediksi<br>
+$(y_i - \hat{y}_i)^2$ : selisih kuadrat antara nilai aktual dan prediksi<br>
 
 MSE mengukur rata-rata kuadrat selisih antara nilai aktual dan prediksi. Semakin kecil nilai MSE, maka semakin akurat model dalam memprediksi data.
 
